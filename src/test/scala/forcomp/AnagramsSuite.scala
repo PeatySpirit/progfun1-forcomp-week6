@@ -1,7 +1,7 @@
 package forcomp
 
 import org.junit._
-import org.junit.Assert.assertEquals
+import org.junit.Assert.{assertArrayEquals, assertEquals}
 
 
 class AnagramsSuite {
@@ -14,12 +14,17 @@ class AnagramsSuite {
     assertEquals(List(('b', 1), ('e', 1), ('o', 1), ('r', 2), ('t', 1)), wordOccurrences("Robert"))
 
 
-  @Test def `sentenceOccurrences: abcd e (5pts)`: Unit =
+  @Test def `sentenceOccurrences: abcd e (5pts)`: Unit = {
     assertEquals(List(('a', 1), ('b', 1), ('c', 1), ('d', 1), ('e', 1)), sentenceOccurrences(List("abcd", "e")))
+    assertEquals(List(('a', 1), ('b', 2), ('c', 1)), sentenceOccurrences(List("ab", "bc")))
+    assertEquals(List(), sentenceOccurrences(List()))
+  }
 
 
-  @Test def `dictionaryByOccurrences.get: eat (10pts)`: Unit =
+  @Test def `dictionaryByOccurrences.get: eat (10pts)`: Unit = {
+    assertEquals(None, dictionaryByOccurrences.get(List()))
     assertEquals(Some(Set("ate", "eat", "tea")), dictionaryByOccurrences.get(List(('a', 1), ('e', 1), ('t', 1))).map(_.toSet))
+  }
 
 
   @Test def `wordAnagrams married (2pts)`: Unit =
